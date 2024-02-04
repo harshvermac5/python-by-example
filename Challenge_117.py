@@ -38,6 +38,7 @@ if ans2 == realans2:
 #printing the score
 print(f"Congrats {name}, you scored {score} points.")
 
+#adding new information to the file
 file = open("QuizScore.csv", "a")
 newrecord = name+" , "+question1+" , "+str(ans1)+" , "+question2+" , "+str(ans2)+" , "+str(score)+"\n"
 file.write(str(newrecord))

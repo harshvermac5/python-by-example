@@ -17,11 +17,14 @@ for row in Booklist:
     print(display)
     x = x+1
 
+#all changes are to be made in Booklist
+#deleting the constituent of the Book list
 getrid = int(input("Enter a row number to delete: "))
 del Booklist[getrid]
 
 x = 0
 for row in Booklist:
+    #displays the counter as index for the list, then the item itself
     display = x, Booklist[x]
     print(display)
     x = x+1
@@ -29,6 +32,7 @@ alter = int(input("Which part do you want to alter: "))
 
 x = 0
 for row in Booklist[alter]:
+    #displays the counter as index for the list, then the item itself
     display = x, Booklist[alter][x]
     print(display)
     x = x+1
