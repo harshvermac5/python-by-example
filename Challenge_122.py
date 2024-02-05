@@ -11,7 +11,7 @@ def addtofile():
 
 #print each line of the targeted file
 def viewrecords():
-    file = list(csv.reader(open("Salaries.csv")))
+    file = open("Salaries.csv","r")
     for row in file:
         print(row)
     file.close()
