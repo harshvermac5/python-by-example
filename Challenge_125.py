@@ -9,7 +9,7 @@ window = Tk()
 window.title("Roll a dice")
 window.geometry("320x240")
 
-button1 = Button(text="Roll", command=click, width=9, height=3, relief=1)
+button1 = Button(text="Roll", command=click, width=9, height=3)
 # button1.place(x=30, y=30, width=50, height=25)
 button1.pack()
 
