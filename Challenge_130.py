@@ -1,6 +1,7 @@
 from tkinter import *
 import csv
 
+#this is quite the the previous challenge, majority of code is copied
 def add_number():
     num = num_box.get()
     if num.isdigit():
@@ -15,6 +16,7 @@ def clear_list():
     num_list.delete(0, END)
     num_box.focus()
 
+#new function is initialised that creates a file, a temporary list, and then copies items in temporary list with line break in the same file
 def save_list():
     file = open("numbers.csv", "w")
     tmp_list=num_list.get(0,END)
