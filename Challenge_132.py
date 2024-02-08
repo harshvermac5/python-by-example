@@ -1,6 +1,8 @@
 from tkinter import *
 import csv
 
+#this code is same as the previous challenge i.e. Challenge 131 with slight modification, pointed out in the comments below
+
 def save_list():
     file=open("ages.csv", "a")
     name=name_box.get()
@@ -29,7 +31,7 @@ def read_list():
 
 window = Tk()
 window.title("People List")
-window.geometry("400x200")
+window.geometry("400x200") #the size of the box is increased
 
 label1=Label(text="Enter a name: ")
 label1.place(x=20, y=20, width=100, height=25)
@@ -46,16 +48,16 @@ age_box=Entry(text="")
 age_box.place(x=120, y=50,width=100, height=25)
 age_box["justify"]="left"
 
-button1=Button(text="Add to list", command=save_list)
+button1=Button(text="Add to list", command=save_list) #commands are changed from creating list to saving to list
 button1.place(x=250, y=20, width=100, height=25)
 
-button2=Button(text="Read List", command=read_list)
+button2=Button(text="Read List", command=read_list) #commands are changed to saving to list to reading from the list
 button2.place(x=250, y=50, width=100, height=25)
 
-label3=Label(text="Saved Names: ")
+label3=Label(text="Saved Names: ") #new label is added as title to the Listbox reperesenting all the names
 label3.place(x=120, y=80, width=230, height=25)
 
-name_list=Listbox()
+name_list=Listbox() #new titlebox is added to display the contents in the same ui
 name_list.place(x=120, y=80, width=230, height=100)
 
 window.mainloop()
