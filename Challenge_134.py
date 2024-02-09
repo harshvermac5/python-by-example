@@ -1,6 +1,7 @@
 from tkinter import *
 import random
 
+#defining a function that checks answer by first calculating it by getting values from num boxes and then performs the calculation and finally compares with the entered result
 def checkans():
     theirans = ansbox.get()
     theirans = int(theirans)
@@ -18,6 +19,7 @@ def checkans():
     imgbx["image"] = img
     imgbx.update()
 
+#function to display the random number betwen the specified ranges to form a new question
 def nextquestion():
     ansbox.delete(0,END)
     num1 = random.randint(10, 50)
@@ -56,6 +58,7 @@ imgbx = Label(image = img)
 imgbx.image= img
 imgbx.place(x=25, y=100, width=200, height=150)
 
+#running the nextquestion function, in order to update values of num box field
 nextquestion()
 
 window.mainloop()

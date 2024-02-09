@@ -4,9 +4,9 @@ def clicked():
     num = selection.get()
     artref = num + ".gif"
     photo = PhotoImage(file=artref)
-    photobox.image = photo
-    photobox["image"] = photo
-    photobox.update()
+    # photobox.image = photo
+    # photobox["image"] = photo
+    # photobox.update()
 
 window = Tk()
 window.title("Art")
