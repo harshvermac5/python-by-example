@@ -1,6 +1,6 @@
 import csv
 
-
+#creating a function that parse the passwords file, and appends its data to tmp list
 def get_data():
     file = list(csv.reader(open("passwords.csv", "r")))
     tmp = []
@@ -8,11 +8,13 @@ def get_data():
         tmp.append(x)
     return tmp
 
+#defining a function that asks for name until our predefined vaiable stays True
 def create_userID(tmp):
     name_again = True
     while name_again == True:
         userID = input("Enter a new user ID: ")
-        userID = userID.lower()
+        userID.lower()
+        #initalsing a counter to check for the first values in the list i.e. name until predefined inlist variable statys false
         inlist = False
         row = 0
         for y in tmp:
@@ -24,16 +26,17 @@ def create_userID(tmp):
             name_again = False
     return userID
 
+#defining a function, thats checks the list for the matches for grading the password in score variable
 def create_password():
     sclist = ["!","@","#","$","%","^","&","*","(",")","-","="]
     nclist = ["1","2","3","4","5","6","7","8","9","0"]
     tryagain = True
     while tryagain == True:
         score = 0
-        uc = False
-        lc = False
-        sc = False
-        nc = False
+        uc = False #uppercase
+        lc = False #lowercase
+        sc = False #symbol list
+        nc = False #number list
         password = input("Enter Password: ")
         length = len(password)
         if length >= 8:
@@ -63,12 +66,13 @@ def create_password():
             again.lower()
             if again == n:
                 tryagain = False
-        if password != password2:
-            print("Passwords do not match, File not saved")
-            main()
-        else:
-            return password
-        
+        # if password != password2:
+        #     print("Passwords do not match, File not saved")
+        #     main()
+        # else:
+    return password
+
+#
 def find_userID(tmp):
     ask_name_again = True
     userID = ""
