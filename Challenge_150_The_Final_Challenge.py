@@ -1,27 +1,33 @@
 import sqlite3
 from tkinter import *
 
+#function that takes data from the defined box in the Tkinter layout, then puts into database
 def add_artist():
     newname = artistname.get()
     newaddress = artistadd.get()
     newtown = artisttown.get()
     newcountry = artistcountry.get()
     newpostcode = artistpostcode.get()
+    #entering the data into Artist database
     cursor.execute("""INSERT INTO Artists (name, address, town, country, postcode) VALUES (?,?,?,?,?)""",(newname, newaddress, newtown, newcountry, newpostcode))
     db.commit()
+    #clears the defined box
     artistname.delete(0, END)
     artistadd.delete(0, END)
     artisttown.delete(0, END)
     artistcountry.delete(0, END)
     artistpostcode.delete(0, END)
+    #puts back the focus to name box
     artistname.focus()
 
+#function to clear all boxes
 def clear_artist():
     artistname.delete(0, END)
     artistadd.delete(0, END)
     artisttown.delete(0, END)
     artistcountry.delete(0, END)
     artistpostcode.delete(0, END)
+    #puts focus back to name
     artistname.focus()
 
 def add_art():
@@ -29,50 +35,59 @@ def add_art():
     newtitle = arttitle.get()
     newmedium = medium.get()
     newprice = artprice.get()
+        #entering the data into Art database
     cursor.execute("""INSERT INTO Art (artistid, title, medium, price) VALUES (?,?,?,?)""", (newartname, newtitle, newmedium, newprice))
     db.commit()
+    #clears the defined box
     artname.delete(0, END)
     arttitle.delete(0, END)
     medium.set("")
     artprice.delete(0, END)
+    #puts the focus back on artist name box
     artistname.focus()
 
+#clears the output window
 def clear_window():
     outputwindow.delete(0, END)
 
+#function that gather data from the Artist database, then assign them to newrecord variable rightafter push them to output window
 def view_artists():
     cursor.execute("SELECT * FROM Artists")
     for x in cursor.fetchall():
         newrecord = str(x[0]) + ", " + str(x[1]) + ", " + str(x[2]) + ", " + str(x[3]) + ", " + str(x[4]) + x[5] + "\n"
         outputwindow.insert(END, newrecord)
 
+#function that does the same as above, but for Art database
 def view_art():
     cursor.execute("SELECT * FROM Art")
     for x in cursor.fetchall():
         newrecord = str(x[0]) + ", " + str(x[1]) + ", " + str(x[2]) + ", " + str(x[3]) + ",  $" + str(x[4]) + "\n"
         outputwindow.insert(END, newrecord)
 
+#function that searches the artist by keyword placed in searchartist box
 def search_artist_output():
     selectedartist = searchartist.get()
-    cursor.execute("SELECT name FROM Artists WHERE artistid = ?", [selectedartist])
+    cursor.execute("SELECT * FROM Artists WHERE name = ?", [selectedartist])
     for x in cursor.fetchall():
-        newrecord = str(x[0]) + ", " + str(x[1]) + ", " + str(x[2]) + ", " + str(x[3]) + ",  $" + str(x[4]) + "\n"
+        newrecord = ", ".join(map(str, x)) + "\n"
         outputwindow.insert(END, newrecord)
     searchartist.delete(0, END)
     searchartist.focus()
 
+#function that searches the art type by keyword placed in medium2 box
 def search_medium_output():
     selectedmedium = medium2.get()
-    cursor.execute("""SELECT Art.pieceid, Artist.name, Art.title, Art.medium, Art.price FROM Artist, Art WHERE Artist.artistid=Art.artistid AND Art.medium=?""", [selectedmedium])
+    cursor.execute("""SELECT Art.pieceid, Artists.name, Art.title, Art.medium, Art.price FROM Artists, Art WHERE Artists.artistid=Art.artistid AND Art.medium=?""", [selectedmedium])
     for x in cursor.fetchall():
         newrecord = str(x[0]) + ", " + str(x[1]) + ", " + str(x[2]) + ", " + str(x[3]) + ",  $" + str(x[4]) + "\n"
         outputwindow.insert(END, newrecord)
     medium2.set("")
 
+#function that filters the result based on max and min price, which it derives from their respective box
 def search_by_price():
     minprice = selectmin.get()
     maxprice = selectmax.get()
-    cursor.execute("""SELECT Art.pieceid, Artists.name, Art.title, Art.price FROM Artists, Art WHERE Artist.artistid=Art.artistid AND Art.price>=? AND Art.price<=? """,[minprice, maxprice])
+    cursor.execute("""SELECT Art.pieceid, Artists.name, Art.title, Art.price FROM Artists, Art WHERE Artists.artistid=Art.artistid AND Art.price>=? AND Art.price<=? """,[minprice, maxprice])
     for x in cursor.fetchall():
         newrecord = str(x[0]) + ", " + str(x[1]) + ", " + str(x[2]) + ", " + str(x[3]) + ",  $" + str(x[4]) + "\n"
         outputwindow.insert(END, newrecord)
@@ -80,6 +95,7 @@ def search_by_price():
     selectmax.delete(0, END)
     selectmin.focus()
 
+#function that updates a text file as purchasing receipt
 def sold():
     file = open("SoldArt.txt", "a")
     selectedpiece = soldpiece.get()
