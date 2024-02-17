@@ -1,14 +1,17 @@
 from tkinter import *
 
+#improving the original code by removing boilerplate codes
 def show_table():
     num = int(num_box.get())  # Convert input to integer directly
     num_list.delete(0, END)  # Clear previous table before displaying new one
     for i in range(1, 13):
         answer = i * num
+        #correcting the sequence of multiplication table
         num_list.insert(END, f"{num} x {i} = {answer}")  # Use formatted string for clarity
     num_box.delete(0, END)
     num_box.focus()
 
+# function to clear the numbox and listbox
 def clear_list():
     num_box.delete(0, END)
     num_list.delete(0, END)
