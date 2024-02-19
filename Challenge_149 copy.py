@@ -1,6 +1,6 @@
 from tkinter import *
 
-#improving the original code by removing boilerplate codes
+# improving the original code by removing boilerplate codes
 def show_table():
     num = int(num_box.get())  # Convert input to integer directly
     num_list.delete(0, END)  # Clear previous table before displaying new one

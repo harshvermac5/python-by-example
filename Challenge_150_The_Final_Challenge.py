@@ -30,6 +30,7 @@ def clear_artist():
     #puts focus back to name
     artistname.focus()
 
+# function that takes value from the artname box, then puts the data into database
 def add_art():
     newartname = artname.get()
     newtitle = arttitle.get()

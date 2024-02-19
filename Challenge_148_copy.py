@@ -74,14 +74,15 @@ def main():
         print("2. Change a Password")
         print("3. Display all user IDs")
         print("4. Quit")
+        # initialising a variable that stores user input
         selection = input("Enter Selection: ")
         if selection == '1':
             new_userID = create_userID(user_data)
             new_password = create_password()
-            user_data.append([new_userID, new_password])
-            with open("passwords.csv", "a", newline='') as file:
+            user_data.append([new_userID, new_password]) # appends the new data to existing data
+            with open("passwords.csv", "a", newline='') as file: # newline function ensures the correct handling of append function when using cross platform
                 writer = csv.writer(file)
-                writer.writerow([new_userID, new_password])
+                writer.writerow([new_userID, new_password]) # appends the new data to database
             print("User ID created successfully.")
         elif selection == '2':
             userID = find_userID(user_data)

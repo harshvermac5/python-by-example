@@ -1,5 +1,6 @@
 from tkinter import *
 
+# function that outputs the multiplication table by puttin the entries in the listbox
 def show_table():
     num = num_box.get()
     num = int(num)
@@ -11,6 +12,7 @@ def show_table():
     num_box.delete(0, END)
     num_box.focus()
 
+# function that clears everything on the UI
 def clear_list():
     num_box.delete(0, END)
     num_list.delete(0, END)
